@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg" *ngIf ="UserAuth">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">                                  
+                  <div class="tab-header">
+                    <a class="nav-link" routerLink="/Edit/kartica" >Dodaj karticu</a>
+                  </div>                                    
+          </li>
+                  
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/transakcija">Trguj</a>
+          </li>           
+        </ul>
+        
+          <input class="form-control" style="width: 20%;" type="search" placeholder="Search" aria-label="Search" (keyup)="searchCoin()" [(ngModel)]="searchText">
+        <ul class="navbar-nav me-right mb-2 mb-lg-0">
+          <li ngbDropdown class="nav-item">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" *ngIf="userDetails">
+              Pozdrav, {{userDetails.fullName}}
+            </a>
+            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">akcija 1</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" (click)="onLogout()">Odjavi se</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav><br>
+<div class="container">
+  <div id="welcome"><br>
+  <p><b>DOBRODOŠLI U PRVU MJENJAČNICU KRIPTOVALUTA U BIH!</b><br>
+    Jednostavno kupi i prodaj željenu valutu uz najbolji tečaj.
+    Nakon uspješne registracije i prijave, unesite svoj broj kartice <a routerLink="/Edit">ovdje</a>, ili nađite u izborniku "Dodaj karticu" i počnite trgovati!</p><button class="button-55" routerLink="/transakcija">TRGUJ</button><br><br>
+    <ngb-carousel>
+      <ng-template ngbSlide>
+        <canvas id="canvasBTC">{{chartBTC}}</canvas>
+      </ng-template>
+      <ng-template ngbSlide>
+        <canvas id="canvas">{{chartETH}}</canvas>
+      </ng-template>
+      <ng-template ngbSlide>
+        <canvas id="canvasBNB">{{chartBNB}}</canvas>
+      </ng-template>
+      <ng-template ngbSlide>
+        <canvas id="canvasCAR">{{chartCAR}}</canvas>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="container-table"> 
+  <h1><b>Tečaj valuta uživo </b></h1> 
+  <table class="table" >
+    <thead>
+      <tr>
+        <th *ngFor="let title of titles">{{title}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coin of filteredCoins; let i = index">
+        <td>
+          {{i + 1}}
+        </td>
+        <td style="width:32%">
+          <img [src]="coin.image" alt="{{coin.name}}" style="width: 2rem;">
+          <span class="ms-3">
+           <b>{{coin.name}}</b>
+          </span>
+          <span class="text-muted text-uppercase">
+            {{coin.symbol}}
+          </span>
+        </td>
+        <td>
+          {{(coin.current_price*1.75).toLocaleString()}} KM
+        </td>
+        <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success': 'text-danger'">
+          <b>{{coin.price_change_percentage_24h}} %</b>
+        </td>
+        <td>
+          {{(coin.current_price*1.02*1.75).toLocaleString()}} KM
+        </td>
+        <td>
+          {{(coin.current_price*0.98*1.75).toLocaleString()}} KM
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>  
+

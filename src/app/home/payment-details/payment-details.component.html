@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg" *ngIf ="UserAuth">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">                                  
+                  <div class="tab-header">
+                    <a class="nav-link" routerLink="/transakcija" >Trguj</a>
+                  </div>                                    
+          </li>
+                  
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>          
+        </ul>
+        <ul class="navbar-nav me-right mb-2 mb-lg-0">
+          <li ngbDropdown class="nav-item">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" *ngIf="userDetails">
+              Pozdrav, {{userDetails.fullName}}
+            </a>
+            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">akcija 1</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" (click)="onLogout()">Odjavi se</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav><br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="wrapper">
+            <div class="wrapped-div">
+                <div class="tab-header">
+                    <h2 routerLink="kartica" routerLinkActive='active'>kartica</h2>
+                    <h2 routerLink="login" routerLinkActive='active'>Prijavi se</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Card Id</th>
+                    <th>Card Owner</th>
+                    <th>Card Number</th>
+                    <th>Exp. Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pd of service.list">
+                    <td (click)="populateForm(pd)">{{pd.id}}</td>
+                    <td (click)="populateForm(pd)">{{pd.nazivVlasnikaKartice}}</td>
+                    <td (click)="populateForm(pd)">{{pd.brojKartice}}</td>
+                    <td (click)="populateForm(pd)">{{pd.datumIstekaKartice}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)">Delete</i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
