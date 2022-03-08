@@ -16,7 +16,10 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li> 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/transakcija">Trguj</a>
+            <a class="nav-link" routerLink="/kupi">Kupi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/prodaj">Prodaj</a>
           </li>           
         </ul>
         
@@ -38,10 +41,10 @@
     </div>
 </nav><br>
 <div class="container">
-  <div id="welcome"><br>
+  <div class="welcome"><br>
   <p><b>DOBRODOŠLI U PRVU MJENJAČNICU KRIPTOVALUTA U BIH!</b><br>
     Jednostavno kupi i prodaj željenu valutu uz najbolji tečaj.
-    Nakon uspješne registracije i prijave, unesite svoj broj kartice <a routerLink="/Edit">ovdje</a>, ili nađite u izborniku "Dodaj karticu" i počnite trgovati!</p><button class="button-55" routerLink="/transakcija">TRGUJ</button><br><br>
+    Nakon uspješne registracije i prijave, unesite svoj broj kartice <a routerLink="/Edit">ovdje</a>, ili nađite u izborniku "Dodaj karticu" i počnite trgovati!</p><button class="button-55" routerLink="/kupi">KUPI</button> &nbsp; &nbsp; &nbsp; &nbsp; <button class="button-55" routerLink="/prodaj">PRODAJ</button><br><br>
     <ngb-carousel>
       <ng-template ngbSlide>
         <canvas id="canvasBTC">{{chartBTC}}</canvas>
@@ -66,7 +69,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let coin of filteredCoins; let i = index">
+      <tr *ngFor="let coin of filteredCoins | slice:0:10; let i = index">
         <td>
           {{i + 1}}
         </td>

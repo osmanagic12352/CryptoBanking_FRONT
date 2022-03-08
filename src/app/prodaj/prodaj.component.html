@@ -37,8 +37,8 @@
         <div class="wrapper">
             <div class="wrapped-div">
                 <div class="tab-header">
-                    <h2 routerLink="kartica" routerLinkActive='active'>Dodaj karticu</h2>
-                    <h2 routerLink="uredi-karticu" routerLinkActive='active'>Uredi karticu</h2>
+                    <h2 routerLink="kartica" routerLinkActive='active'>kartica</h2>
+                    <h2 routerLink="login" routerLinkActive='active'>Prijavi se</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -60,15 +60,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let pd of service.list">
-                    <td (click)="populateForm(pd)">{{pd.id}}</td>
-                    <td (click)="populateForm(pd)">{{pd.nazivVlasnikaKartice}}</td>
-                    <td (click)="populateForm(pd)">{{pd.brojKartice}}</td>
-                    <td (click)="populateForm(pd)">{{pd.datumIstekaKartice}}</td>
-                    <td>
-                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)">Delete</i>
-                    </td>
-                </tr>
+
             </tbody>
         </table>
     </div>

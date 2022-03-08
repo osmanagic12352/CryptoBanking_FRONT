@@ -1,17 +1,58 @@
-<div class="jumbotron py-3">
-    <h1 class="display-6 text-center">CRYPTO-BANKING</h1>
-</div>
-<div class="wrapper">
-    <div class="wrapped-div">
-        <div class="tab-header">
-            <h2 routerLink="register" routerLinkActive='active'>Registriraj se</h2>
-            <h2 routerLink="login" routerLinkActive='active'>Prijavi se</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <router-outlet></router-outlet>
+<img src="/assets/Images/logo.png" alt="logo" style="height: 15%; width: 65%; padding-left: 32%;" >
+<div class="container">  
+    <div class="welcomeL">
+        <br><br><br>
+        <div class="wrapperL">
+            <div class="wrapped-divL">
+                <div class="tab-header">
+                    <h2 routerLink="register" routerLinkActive='active'>Registriraj se</h2>
+                    <h2 routerLink="login" routerLinkActive='active'>Prijavi se</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="container-table"><br><br>
+        <h2><b>Tečaj valuta uživo</b> <input class="search-coin" type="search" placeholder="Search coin" aria-label="Search" (keyup)="searchCoin()" [(ngModel)]="searchText"></h2>
 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th *ngFor="let title of titles">{{title}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let coin of filteredCoins | slice:0:10; let i = index">
+                    <td>
+                        {{i + 1}}
+                    </td>
+                    <td style="width:32%">
+                        <img [src]="coin.image" alt="{{coin.name}}" style="width: 2rem;">
+                        <span class="ms-3">
+                            <b>{{coin.name}}</b>
+                        </span>
+                        <span class="text-muted text-uppercase">
+                            {{coin.symbol}}
+                        </span>
+                    </td>
+                    <td>
+                        {{(coin.current_price*1.75).toLocaleString()}} KM
+                    </td>
+                    <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success': 'text-danger'">
+                        <b>{{coin.price_change_percentage_24h}} %</b>
+                    </td>
+                    <td>
+                        {{(coin.current_price*1.02*1.75).toLocaleString()}} KM
+                    </td>
+                    <td>
+                        {{(coin.current_price*0.98*1.75).toLocaleString()}} KM
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

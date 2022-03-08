@@ -4,4 +4,5 @@ export class PaymentDetail {
     brojKartice: string;
     datumIstekaKartice: string;
     cvv: string;
+    userId: string;
 }

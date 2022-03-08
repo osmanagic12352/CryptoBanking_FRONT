@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../shared/login.service';
+import { PaymentDetailService } from '../shared/payment-detail.service';
 
 @Component({
-  selector: 'app-transakcija',
-  templateUrl: './transakcija.component.html',
+  selector: 'app-prodaj',
+  templateUrl: './prodaj.component.html',
   styles: [
   ]
 })
-export class TransakcijaComponent implements OnInit {
+export class ProdajComponent implements OnInit {
   userDetails: any;
 
-  constructor(private router: Router, private service: LoginService, private helper: JwtHelperService) { }
+  constructor(public service: PaymentDetailService, private toastr: ToastrService, private service_user: LoginService, private helper: JwtHelperService, private router: Router) { }
 
   ngOnInit(): void {
-    this.service.GetUserProfile().subscribe(
+    this.service_user.GetUserProfile().subscribe(
       (res: any) => {
         this.userDetails = res;
       },
@@ -23,6 +25,11 @@ export class TransakcijaComponent implements OnInit {
         console.log(err);
       },
     );
+  }
+
+  onLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/user/login']);
   }
 
   UserAuth() {
@@ -34,11 +41,6 @@ export class TransakcijaComponent implements OnInit {
       this.router.navigate(['/user/login']);
       return false;
     }
-  }
-
-  onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/user/login']);
   }
 
 }

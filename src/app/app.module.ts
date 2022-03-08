@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -25,7 +25,10 @@ import { AdminComponent } from './admin/admin.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { PaymentDetailsFormComponent } from './home/payment-details/payment-details.form/payment-details-form.component';
 import { PaymentDetailsComponent } from './home/payment-details/payment-details.component';
-import { TransakcijaComponent } from './transakcija/transakcija.component';
+import { KupiComponent } from './kupi/kupi.component';
+import { ProdajComponent } from './prodaj/prodaj.component';
+import { CardEditComponent } from './home/payment-details/card-edit/card-edit.component';
+import { OdaberiValutuComponent } from './odaberi-valutu/odaberi-valutu.component';
 
 
 export function tokenGetter() {
@@ -43,7 +46,10 @@ export function tokenGetter() {
     ForbiddenComponent,
     PaymentDetailsFormComponent,
     PaymentDetailsComponent,
-    TransakcijaComponent
+    KupiComponent,
+    ProdajComponent,
+    CardEditComponent,
+    OdaberiValutuComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +59,7 @@ export function tokenGetter() {
     ToastrModule.forRoot(),
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
     MatPaginatorModule,
     JwtModule.forRoot({
       config: {

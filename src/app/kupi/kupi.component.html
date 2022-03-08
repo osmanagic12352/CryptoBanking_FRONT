@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-lg" *ngIf="UserAuth">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <div class="tab-header">
+                        <a class="nav-link" routerLink="/transakcija">Trguj</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-right mb-2 mb-lg-0">
+                <li ngbDropdown class="nav-item">
+                    <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" *ngIf="userDetails">
+                        Pozdrav, {{userDetails.fullName}}
+                    </a>
+                    <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">akcija 1</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#" (click)="onLogout()">Odjavi se</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav><br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="wrapper">
+            <div class="wrapped-div">
+                <div class="valute">
+                <h1>Odaberi Valutu:</h1><br>
+                <div *ngFor="let coin of coins">               
+                <table>
+                    <input type="radio" name="valute" value="{{coin}}" (change)="BiranjeValuta($event)"><i>{{coin}}</i>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                </div>
+                <p>odabrana valuta je: {{odabranaCoin}}</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="trguj">
+            <h1>KUPI</h1>
+            <form #form="ngForm" (submit)="onSubmit(form)">
+                <input type="hidden" name="id" value="service.formData.id" />
+                <div class="form-group">
+                    <label>Naziv Valute</label>
+                    <select class="form-control form-control-lg" type="select" name="pets" id="pet-select">
+                        <option value="Bitcoin">Bitcoin</option>
+                        <option value="Ethereum">Ethereum</option>
+                        <option value="Binance coin">Binance coin</option>
+                        <option value="Tether">Tether</option>
+                        <option value="Ripple">Ripple</option>
+                        <option value="Cardano">Cardano</option>
+                    </select>
+                </div><br>
+                <div class="form-group">
+                    <form [formGroup]="countryForm">
+                    <label>Cijena Valute</label>      
+                        <select formControlName="countryControl">
+                            <option [ngValue]="country" *ngFor="let country of countries">{{country.name}} <p>{{country.code}}</p></option>
+                        </select>
+                       
+                       </form>
+                </div><br>
+                <div class="form-group">
+                    <label>Količina</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Upišite koliko želite kupiti"
+                        name="datumIstekaKartice" #kolicina="ngModel"
+                        [(ngModel)]="service.formData.kolicina">
+                </div><br>
+                <div class="form-group">
+                    <label>Ukupna cijena</label>
+                    <input type="number" class="form-control form-control-lg" placeholder="">
+                </div><br>
+                <div class="form-group">
+                    <label>Kripto adresa</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Vaša kripto adresa"
+                        #cryptoAdresa="ngModel" [(ngModel)]="service.formData.cryptoAdresa">
+                </div><br>
+                <div class="form-group">
+                    <button class="btn btn-info btn-lg btn-block" type="submit">POTVRDI</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>

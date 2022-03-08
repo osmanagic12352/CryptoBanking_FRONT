@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ChildrenOutletContexts } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
@@ -9,7 +9,10 @@ import { PaymentDetailsFormComponent } from './home/payment-details/payment-deta
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminComponent } from './admin/admin.component';
 import { PaymentDetailsComponent } from './home/payment-details/payment-details.component';
-import { TransakcijaComponent } from './transakcija/transakcija.component';
+import { KupiComponent } from './kupi/kupi.component';
+import { ProdajComponent } from './prodaj/prodaj.component';
+import { CardEditComponent } from './home/payment-details/card-edit/card-edit.component';
+
 
 
 
@@ -31,10 +34,11 @@ const routes: Routes = [
     {path:'admin', component: AdminComponent, canActivate:[JwtGuard], data: {permittedRoles:['Admin']}},
     {path:'Edit', component: PaymentDetailsComponent,
      children:[
-         {path:'kartica', component: PaymentDetailsFormComponent}       
+         {path:'kartica', component: PaymentDetailsFormComponent},
+         {path:'uredi-karticu', component: CardEditComponent}       
      ]},
-    {path:'transakcija', component: TransakcijaComponent}
-   
+    {path:'kupi', component:KupiComponent},
+    {path:'prodaj', component:ProdajComponent}
 
 ];
 

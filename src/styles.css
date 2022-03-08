@@ -56,9 +56,25 @@ body{
   background-repeat: no-repeat;
   }
 
+
 h1,a,p,th,td,h2 {
   font-family: "Nunito";
   
+}
+
+.search-coin{
+  float: right;
+  width: 40%;
+  font-size:large;
+  background-color: #636b7b;
+  color: #fff;
+  border: 1px solid #636b7b;
+  border-radius: 10px 10px 10px 10px;
+  padding: 1%;
+}
+
+.search-coin::placeholder{
+  color: #a9acb3;
 }
 
 input.form-control,input.form-control:focus{
@@ -99,6 +115,24 @@ div.form-group.required>label:first-child:after{
     padding: 20px;
   }
 
+  .wrapperL {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .wrapper1 {
+    display:flex;
+    align-items: left;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+  }
+
   .wrapped-div {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
@@ -108,6 +142,18 @@ div.form-group.required>label:first-child:after{
     max-width: 450px;
     position: relative;
     padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+
+  .wrapped-divL {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #2e3137;
+    width: 90%;
+    line-height:90%;
+    max-width: 450px;
+    position: relative;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   }
@@ -152,10 +198,16 @@ ngb-carousel {
   width: 60%;
 }
 
-#welcome {
+.welcome {
   float: left;
   width: 40%;
   text-align: center;
+  font-size: x-large;
+}
+
+.welcomeL {
+  float: left;
+  width: 40%;
   font-size: x-large;
 }
 
@@ -198,6 +250,15 @@ ngb-carousel {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.trguj{
+  margin-right: 5%;
+  width: 50%;
+}
+
+.valute{
+  color: white;
+}
 
 
 /*FORBBIDEN*/

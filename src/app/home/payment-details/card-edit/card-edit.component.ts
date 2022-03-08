@@ -6,12 +6,12 @@ import { PaymentDetail } from 'src/app/shared/payment-detail.model';
 import { PaymentDetailService } from 'src/app/shared/payment-detail.service';
 
 @Component({
-  selector: 'app-payment-details-form',
-  templateUrl: './payment-details-form.component.html' ,
+  selector: 'app-card-edit',
+  templateUrl: './card-edit.component.html',
   styles: [
   ]
 })
-export class PaymentDetailsFormComponent implements OnInit {
+export class CardEditComponent implements OnInit {
 
   constructor(public service:PaymentDetailService, 
     private toastr:ToastrService,
@@ -19,19 +19,19 @@ export class PaymentDetailsFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  onSubmit(form:NgForm){
-    this.service.postPaymentDetail().subscribe(
+
+  updateRecord(form: NgForm){
+    this.service.putPaymentDetail().subscribe(
       res => {
         this.resetForm(form);
         this.service.ListCards();
-        this.toastr.success('Uspješno unešeno!','Kartični podaci')
+        this.toastr.info('Uspješno unešeno!','Kartični podaci')
 
       },
       err => {console.log(err);}
     );
   }
-
+  
   resetForm(form: NgForm){
     form.form.reset();
     this.service.formData = new PaymentDetail();
